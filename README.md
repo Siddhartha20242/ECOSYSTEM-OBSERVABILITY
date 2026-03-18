@@ -1,11 +1,10 @@
 # json-schema-observatory
 
-live → 
+live → [ecosystem-observability.vercel.app](http://ecosystem-observability.vercel.app)
 
 ---
 
-
-![Architecture](image.png)
+Architecture
 
 ---
 
