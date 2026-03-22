@@ -1,0 +1,34 @@
+{
+  "date": "2026-03-22",
+  "source": "github",
+  "data": {
+    "totalRepos": 2464,
+    "repos": {
+      "ajv-validator/ajv": {
+        "stars": 14649,
+        "forks": 951,
+        "openIssues": 322,
+        "lastPushed": "2026-02-20T18:05:59Z"
+      },
+      "tdegrunt/jsonschema": {
+        "stars": 1870,
+        "forks": 267,
+        "openIssues": 70,
+        "lastPushed": "2026-03-20T21:52:46Z"
+      },
+      "json-schema-org/json-schema-spec": {
+        "stars": 4909,
+        "forks": 415,
+        "openIssues": 64,
+        "lastPushed": "2026-03-19T17:25:03Z"
+      },
+      "ExodusMovement/schemasafe": {
+        "stars": 179,
+        "forks": 16,
+        "openIssues": 18,
+        "lastPushed": "2025-05-20T13:29:15Z"
+      }
+    }
+  },
+  "error": null
+}
