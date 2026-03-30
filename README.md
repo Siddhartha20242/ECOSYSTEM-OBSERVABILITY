@@ -186,11 +186,11 @@ see [analysis.md](./analysis.md) for a full breakdown of what the numbers actual
 7. Storage Strategy
 8. Known Tradeoffs and Things we can fix later
 
-1. ***What are we building***
+***What are we building***
 
 - A weekly data pipeline that pulls metrics from NPM, Github, and Bowtie, Stores them as plain JSON files, and displays on a dashboard. No backend server, no database - just a scheduled script running on Node JS once every week and has a repo and a Next.JS Frontend.
 
-1. ***Functional Requirements*** 
+***Functional Requirements*** 
 - **Priority-0**
     - Collect NPM weekly downloads counts for major JSON schema validators.
     - Collect Github Stars(stars, forks, open issues) for key repos
@@ -203,7 +203,7 @@ see [analysis.md](./analysis.md) for a full breakdown of what the numbers actual
 - **Out of Scope (Not recommended )**
     - User accounts or saved preferences (We do not need database and as per Jason and other maintainers, [`this`](https://github.com/json-schema-org/community/issues/873#issuecomment-2629147336) is what i noticed)
     
-1. ***Non-Functional Requirements***
+***Non-Functional Requirements***
     - **Scale**
         - One run peer week - 3 API calls per source
         - Data grows by about 3 JSON files per week
@@ -221,15 +221,14 @@ see [analysis.md](./analysis.md) for a full breakdown of what the numbers actual
     - **Reliability**
         - If one source fails, the other two still run and save their data
         - Errors will get written to the JSON file so we can know what broke
-2. ***Key Components***
+ ***Key Components***
 - **`script/collect.ts`** - The main runner that collects data of all three sources
 - **`scripts/npm.ts`** - hits the NPM downloads API for each package we care about. no auth needed. Loops through packages, logs each one, keep going if one fails.
 - **`script/github.ts`** - We are focusing on two things - one for the total repo count for json-schema topic, plus individual stats for repos we’re tracking.
 - **`script/bowtie.ts`** - fetches their public report and gives the complicance scores
 - **`Github Actions workflow`** - runs the collector every week once at midnight UTC. Commits new files, pushes directly to main. Vercel detects the push and redeploys the dashbaord using CI/CD.
 
-
-1.  **Data Model**
+ **Data Model**
 - Each file follows the same shape regardless of the source
     
     The following format will be used:
@@ -241,8 +240,7 @@ see [analysis.md](./analysis.md) for a full breakdown of what the numbers actual
        "error": null
     }
     
-
-1. **Storage Strategy**
+ **Storage Strategy**
 - We will be using a github repo instead of a database. Reasons:
     - Free
     - Every change is versioned automatically
@@ -251,7 +249,7 @@ see [analysis.md](./analysis.md) for a full breakdown of what the numbers actual
     - Works perfectly for append only weekly writes
     - On top of that we are open source and we need a lot of sponsors to maintain that so We have to keep that in mind too.
 
-1. **Known Tradeoffs and things to fix later**
+ **Known Tradeoffs and things to fix later**
 - No Alerting - If the Github Actions fails completely, nobody gets notified. The dashboard just shows the old data. For now it’s fine cause it’s a qualification task but eventually it will be worth to add a Slack or Email notification on workflow failure.
 - Weekly data folder grows over time - It wont be a problem for years, but if the data grows to much we can use S3 type store as recommended in [this](https://github.com/json-schema-org/community/issues/980#issuecomment-3843938868).
 
