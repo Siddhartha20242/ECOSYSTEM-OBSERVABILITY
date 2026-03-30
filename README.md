@@ -459,9 +459,6 @@ see [analysis.md](./analysis.md) for a full breakdown of what the numbers actual
 - **`script/bowtie.ts`** - fetches their public report and gives the complicance scores
 - **`Github Actions workflow`** - runs the collector every week once at midnight UTC. Commits new files, pushes directly to main. Vercel detects the push and redeploys the dashbaord using CI/CD.
 
-1. ***Architecture: (Here it will be saturday or sunday most likely sunday here saturday is for reference )***
-
-![image.png](attachment:b0ffe9cf-252c-43c5-8265-c8b4a65d59a6:image.png)
 
 1.  **Data Model**
 - Each file follows the same shape regardless of the source
@@ -488,47 +485,6 @@ see [analysis.md](./analysis.md) for a full breakdown of what the numbers actual
 1. **Known Tradeoffs and things to fix later**
 - No Alerting - If the Github Actions fails completely, nobody gets notified. The dashboard just shows the old data. For now it’s fine cause it’s a qualification task but eventually it will be worth to add a Slack or Email notification on workflow failure.
 - Weekly data folder grows over time - It wont be a problem for years, but if the data grows to much we can use S3 type store as recommended in [this](https://github.com/json-schema-org/community/issues/980#issuecomment-3843938868).
-
-
-
-GSoC 2026 — JSON Schema Organization
-
-1.  **Data Model**
-- Each file follows the same shape regardless of the source
-    
-    The following format will be used:
-    
-    {
-       "date": "2026-03-17",
-       "source": "npm",
-       "data": { ... },
-       "error": null
-    }
-    
-
-1. **Storage Strategy**
-- We will be using a github repo instead of a database. Reasons:
-    - Free
-    - Every change is versioned automatically
-    - Anyone can look at the raw data
-    - no infra to maintain
-    - Works perfectly for append only weekly writes
-    - On top of that we are open source and we need a lot of sponsors to maintain that so We have to keep that in mind too.
-
-1. **Known Tradeoffs and things to fix later**
-- No Alerting - If the Github Actions fails completely, nobody gets notified. The dashboard just shows the old data. For now it’s fine cause it’s a qualification task but eventually it will be worth to add a Slack or Email notification on workflow failure.
-- Weekly data folder grows over time - It wont be a problem for years, but if the data grows to much we can use S3 type store as recommended in [this](https://github.com/json-schema-org/community/issues/980#issuecomment-3843938868).
-
-
-
-
-
-
-
-
-
-
-
 
 
 
