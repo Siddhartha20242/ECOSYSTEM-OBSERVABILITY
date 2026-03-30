@@ -86,7 +86,7 @@ Each collector also writes its error into the json file when something goes wron
 
 ## one challenge and how I dealt with it
 
-Bowtie doesn't have a real API. The compliance data lives in a JSON file in their GitHub repo, and the URL I had documented returned 404 — they'd moved the file at some point since it was last referenced.
+Bowtie doesn't have a real API. The compliance data lives in a JSON file in their GitHub repo, and the URL I had documented returned 404 — they'd moved the file at some point since it was last referenced. (I am fixing it soon)
 
 My approach: the bowtie collector wraps the fetch and the parse in separate try/catch blocks. If the fetch fails, we log the error and move on. If the fetch succeeds but parsing fails because the format changed, we save the raw response alongside the error. That way we never silently lose data — even if the parser is wrong, the raw JSON is committed to the repo and I can write a new parser later without losing the original.
 
