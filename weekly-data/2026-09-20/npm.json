@@ -1,0 +1,19 @@
+{
+  "date": "2026-09-20",
+  "source": "npm",
+  "data": {
+    "ajv": {
+      "downloads": 272629856,
+      "week": "2026-09-18"
+    },
+    "jsonschema": {
+      "downloads": 4116454,
+      "week": "2026-09-18"
+    },
+    "ajv-formats": {
+      "downloads": 94437036,
+      "week": "2026-09-18"
+    }
+  },
+  "error": null
+}
